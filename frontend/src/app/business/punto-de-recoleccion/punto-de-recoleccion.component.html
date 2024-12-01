@@ -1,0 +1,39 @@
+<div id="map" class="mb-10"></div> <!-- Mapa de Leaflet donde se mostrarán los puntos -->
+
+<div class="overflow-x-auto">
+  <!-- Tabla para mostrar los puntos de recolección -->
+  <table class="min-w-full border-collapse bg-white text-sm shadow-md rounded-lg">
+    <thead>
+      <tr class="bg-slate-800 text-white text-left">
+        <th class="px-6 py-3 border-b-2 border-slate-700">ID</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Nombre</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Dirección</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Latitud</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Longitud</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Horarios</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Contacto</th>
+        <th class="px-6 py-3 border-b-2 border-slate-700">Acciones</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-slate-200">
+      <!-- Itera sobre los puntos de recolección y los muestra en la tabla -->
+      <tr *ngFor="let punto of puntosRecoleccion" class="hover:bg-slate-100">
+        <td class="px-6 py-4 text-slate-700">{{ punto.id }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.nombre }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.direccion }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.latitud }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.longitud }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.horarios }}</td>
+        <td class="px-6 py-4 text-slate-700">{{ punto.contacto }}</td>
+        <td class="px-6 py-4 text-center">
+          <button 
+          type="button" 
+          class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-0 py-0"
+          (click)="centrarEnPunto(punto)">
+          Ver en mapa
+        </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
