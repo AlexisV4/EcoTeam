@@ -1,20 +1,18 @@
 <div class="min-h-screen bg-gray-50/50">
-    <app-sidebar />
-    <div class="p-4 xl:ml-80">
-      <nav class="block w-full max-w-full bg-transparent text-white shadow-none rounded-xl transition-all px-0 py-1">
-        <app-header />
-      </nav>
-
-      <div class="mt-12">
-        <app-punto-de-recoleccion />
-        
-      </div>
-
-      <div class="text-blue-gray-600">
-        <app-footer />
-      </div>
-
+  <app-sidebar (viewChanged)="setView($event)"></app-sidebar>
+  <div class="p-4 xl:ml-80">
+    <nav class="block w-full max-w-full bg-transparent text-white shadow-none ...">
+      <app-header></app-header>
+    </nav>
+    <div class="mt-12">
+      <app-punto-de-recoleccion *ngIf="currentView === 'puntosDeRecoleccion'"></app-punto-de-recoleccion>
+      <app-registrar-punto *ngIf="currentView === 'registrarPunto'"></app-registrar-punto>
+    </div>
+    <div class="text-blue-gray-600">
+      <app-footer></app-footer>
     </div>
   </div>
+</div>
+
   
 <router-outlet />
