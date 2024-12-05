@@ -17,4 +17,8 @@ public class PuntoService {
 
     }
 
+    public PuntoRecoleccion guardarPunto(PuntoRecoleccion puntoRecoleccion) {
+        return puntosRepository.save(puntoRecoleccion);
+    }
+
 }

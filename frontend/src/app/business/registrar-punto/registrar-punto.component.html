@@ -1,4 +1,4 @@
-<form>
+<form [formGroup]="puntoForm" (ngSubmit)="onSubmit()"> 
     <div class="space-y-12">
     
       <div class="border-b border-gray-900/10 pb-12">
@@ -9,42 +9,42 @@
           <div class="sm:col-span-3">
             <label for="nombre" class="block text-sm/6 font-medium text-gray-900">Nombre</label>
             <div class="mt-2">
-              <input type="text" name="nombre" id="nombre" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input type="text" name="nombre" id="nombre" formControlName="nombre" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
   
           <div class="sm:col-span-3">
             <label for="direccion" class="block text-sm/6 font-medium text-gray-900">Dirección</label>
             <div class="mt-2">
-              <input type="text" name="direccion" id="direccion" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input type="text" name="direccion" id="direccion" formControlName="direccion" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
   
           <div class="sm:col-span-3">
             <label for="latitud" class="block text-sm/6 font-medium text-gray-900">Latitud</label>
             <div class="mt-2">
-              <input id="latitud" name="latitud" type="number" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input id="latitud" name="latitud" type="number" formControlName="latitud" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
   
           <div class="sm:col-span-3">
             <label for="longitud" class="block text-sm/6 font-medium text-gray-900">Longitud</label>
             <div class="mt-2">
-              <input id="longitud" name="longitud" type="number" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input id="longitud" name="longitud" type="number" formControlName="longitud" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
   
           <div class="sm:col-span-3">
             <label for="horarios" class="block text-sm/6 font-medium text-gray-900">Horarios</label>
             <div class="mt-2">
-              <input id="longitud" name="horarios" type="text" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input id="longitud" name="horarios" type="text" formControlName="horarios" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
   
           <div class="sm:col-span-3">
             <label for="contacto" class="block text-sm/6 font-medium text-gray-900">Contacto</label>
             <div class="mt-2">
-              <input type="text" name="contacto" id="contacto" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+              <input type="text" name="contacto" id="contacto" formControlName="contacto" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
             </div>
           </div>
         </div>
