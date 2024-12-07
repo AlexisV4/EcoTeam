@@ -14,9 +14,8 @@ import { RegistrarPuntoComponent } from '../../../business/registrar-punto/regis
     HeaderComponent,
     SidebarComponent,
     FooterComponent,
-    PuntoDeRecoleccionComponent,
     RouterOutlet,
-    RegistrarPuntoComponent
+  
   ],
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css']
