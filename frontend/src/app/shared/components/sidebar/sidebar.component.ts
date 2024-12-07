@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -6,9 +7,16 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
-  @Output() viewChanged = new EventEmitter<string>();
+  constructor(private router: Router) {}
 
-  changeView(view: string) {
-    this.viewChanged.emit(view);
+  onClickPuntosRecoleccion() {
+    console.log('Puntos de recolección clickeado');
+    this.router.navigate(['/main/puntosDeRecoleccion']);
   }
+
+  onClickRegistrarPunto() {
+    console.log('Puntos de Registro clickeado');
+    this.router.navigate(['/main/registrarPunto']);
+  }
+
 }
