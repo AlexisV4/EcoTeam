@@ -7,9 +7,9 @@
 Este proyecto permite a los usuarios:
 
 - Ver un mapa interactivo con puntos de recolección de basura y reciclaje.
-- Filtrar puntos según categorías como "Basura", "Reciclaje", etc.
+- Listado de los diferentes puntos para buscarlos en el mapa o eliminarlos.
 - Consultar detalles sobre cada punto (ubicación, horarios, tipo de residuos aceptados, etc.).
-- Administrar los puntos de recolección desde una interfaz de administración.
+- Formulario para insertar nuevos puntos de recolección.
 
 La aplicación está compuesta por un frontend desarrollado en **Angular**, un backend con **Spring Boot**, y estilos personalizados usando **Tailwind CSS**.
 
@@ -35,9 +35,9 @@ Para correr el proyecto de manera local, sigue los siguientes pasos:
 
 ### Requisitos
 
-- **Java 11+** (para el backend con Spring Boot)
+- **Java 21** (para el backend con Spring Boot)
 - **Node.js** y **npm** (para el frontend con Angular)
-- **MySQL** o **H2** (base de datos)
+- **MySQL**(base de datos)
 
 ### Backend (Spring Boot)
 
