@@ -44,4 +44,4 @@ Para correr el proyecto de manera local, sigue los siguientes pasos:
 1. Clona el repositorio:
 
    ```bash
-   git clone https://github.com/tu-usuario/eco-team-backend.git
+   git clone https://github.com/AlexisV4/EcoTeam/tree/master
