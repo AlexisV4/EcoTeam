@@ -21,4 +21,10 @@ public class PuntoService {
         return puntosRepository.save(puntoRecoleccion);
     }
 
+    public void eliminarPunto(int id) {
+        if(!puntosRepository.existsById(id)){
+            throw new IllegalArgumentException("El punto de recoleccion con ID " + id + " no existe");
+        }
+        puntosRepository.deleteById(id);
+    }
 }

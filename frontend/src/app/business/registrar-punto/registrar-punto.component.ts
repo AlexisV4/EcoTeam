@@ -15,7 +15,6 @@ export class RegistrarPuntoComponent {
   private apiUrl = 'http://localhost:8080/api/puntos_recoleccion'; // Cambia esta URL
 
   constructor(private fb: FormBuilder, private http: HttpClient) {
-    // Inicializa el formulario reactivo
     this.puntoForm = this.fb.group({
       nombre: [''],
       direccion: [''],

@@ -22,9 +22,7 @@ export class PuntoDeRecoleccionComponent implements OnInit {
     this.getPuntosRecoleccion();
   }
 
-  // Inicializa el mapa
   initMap(): void {
-    // Inicializa el mapa con un zoom general para el área donde se encuentran los puntos de recolección
     this.map = new L.Map('map').setView([6.27000000, -75.59000000], 13);  // Ajusta a la ubicación inicial correcta (por ejemplo, Bello)
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
@@ -32,11 +30,10 @@ export class PuntoDeRecoleccionComponent implements OnInit {
     }).addTo(this.map);
   }
 
-  // Obtiene los puntos de recolección desde el servicio
   getPuntosRecoleccion(): void {
     this.puntoDeRecoleccionService.getPuntosRecoleccion().subscribe(
       (data) => {
-        console.log('Puntos de recolección:', data); // Verifica los datos recibidos
+        console.log('Puntos de recolección:', data); 
         this.puntosRecoleccion = data;
         this.loadMarkers();
       },
@@ -46,39 +43,49 @@ export class PuntoDeRecoleccionComponent implements OnInit {
     );
   }
 
-  // Carga los marcadores en el mapa
   loadMarkers(): void {
     this.puntosRecoleccion.forEach((ubicacion) => {
-      // Asegúrate de que las coordenadas sean números
-      const lat = Number(ubicacion.latitud);  // Convierte latitud a número
-      const lon = Number(ubicacion.longitud); // Convierte longitud a número
+      const lat = Number(ubicacion.latitud);  
+      const lon = Number(ubicacion.longitud); 
 
-      // Verificar que las coordenadas y el nombre sean correctos
       console.log(`Cargando marcador: ${ubicacion.nombre} - Lat: ${lat}, Lon: ${lon}`);
 
-      // Añade el marcador a la posición correcta con el nombre correcto
+      
       const marker = L.marker([lat, lon]).addTo(this.map!);
 
-      // Usamos el nombre de la ubicación, que debe ser único
+      
       marker.bindPopup(
         `<b>${ubicacion.nombre}</b><br>${ubicacion.direccion}<br>${ubicacion.horarios}<br>${ubicacion.contacto}`
       );
     });
   }
 
-  // Centra el mapa en el punto de recolección seleccionado
   centrarEnPunto(punto: PuntoRecoleccion): void {
     if (this.map) {
-      // Asegúrate de que las coordenadas sean correctas antes de usarlas
       const lat = Number(punto.latitud);
       const lon = Number(punto.longitud);
 
-      // Ajusta la vista del mapa al punto seleccionado
-      this.map.setView([lat, lon], 14);  // Ajusta el zoom al nivel que prefieras
+      this.map.setView([lat, lon], 14);  
       L.marker([lat, lon]).addTo(this.map)
         .bindPopup(
           `<b>${punto.nombre}</b><br>${punto.direccion}<br>${punto.horarios}<br>${punto.contacto}`
         );
     }
   }
+
+  eliminarPunto(id: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este punto de recolección?')) {
+      this.puntoDeRecoleccionService.eliminarPunto(id).subscribe(
+        () => {
+          this.puntosRecoleccion = this.puntosRecoleccion.filter(p => p.id !== id);
+          alert('Punto de recolección eliminado correctamente');
+        },
+        (error) => {
+          console.error('Error al eliminar el punto:', error);
+          alert('Hubo un error al eliminar el punto');
+        }
+      );
+    }
+  }
+  
 }
