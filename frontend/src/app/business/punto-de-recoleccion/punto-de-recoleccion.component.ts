@@ -25,7 +25,7 @@ export class PuntoDeRecoleccionComponent implements OnInit {
   }
 
   initMap(): void {
-    this.map = new L.Map('map').setView([6.27000000, -75.59000000], 13);  // Ajusta a la ubicación inicial correcta (por ejemplo, Bello)
+    this.map = new L.Map('map').setView([6.27000000, -75.59000000], 13); 
     tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
