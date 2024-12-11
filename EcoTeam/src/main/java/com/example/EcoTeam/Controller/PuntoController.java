@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,6 +43,36 @@ public class PuntoController {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<PuntoRecoleccion> actualizarPunto(@PathVariable int id, @RequestBody PuntoRecoleccion puntoRecoleccion) {
+        PuntoRecoleccion puntoExistente = puntoService.buscarPuntoPorId(id);
+        if (puntoExistente != null) {
+            if (puntoRecoleccion.getNombre() != null) {
+                puntoExistente.setNombre(puntoRecoleccion.getNombre());
+            }
+            if (puntoRecoleccion.getDireccion() != null) {
+                puntoExistente.setDireccion(puntoRecoleccion.getDireccion());
+            }
+            if (puntoRecoleccion.getLatitud() != null) {
+                puntoExistente.setLatitud(puntoRecoleccion.getLatitud());
+            }
+            if (puntoRecoleccion.getLongitud() != null) {
+                puntoExistente.setLongitud(puntoRecoleccion.getLongitud());
+            }
+            if (puntoRecoleccion.getContacto() != null) {
+                puntoExistente.setContacto(puntoRecoleccion.getContacto());
+            }
+            if (puntoRecoleccion.getHorarios() != null) {
+                puntoExistente.setHorarios(puntoRecoleccion.getHorarios());
+            }
+            PuntoRecoleccion puntoActualizado = puntoService.actualizarPunto(puntoExistente);
+            return new ResponseEntity<>(puntoActualizado, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarPunto(@PathVariable int id) {

@@ -1,4 +1,4 @@
-<div id="map" class="mb-10"></div> <!-- Mapa de Leaflet donde se mostrarán los puntos -->
+<div id="map" class="mb-10"></div> <!-- Mapa de Leaflet -->
 
 <div class="overflow-x-auto">
   <!-- Tabla para mostrar los puntos de recolección -->
@@ -16,7 +16,6 @@
       </tr>
     </thead>
     <tbody class="divide-y divide-slate-200">
-      <!-- Itera sobre los puntos de recolección y los muestra en la tabla -->
       <tr *ngFor="let punto of puntosRecoleccion" class="hover:bg-slate-100">
         <td class="px-6 py-4 text-slate-700">{{ punto.id }}</td>
         <td class="px-6 py-4 text-slate-700">{{ punto.nombre }}</td>
@@ -27,21 +26,65 @@
         <td class="px-6 py-4 text-slate-700">{{ punto.contacto }}</td>
         <td class="px-6 py-4 text-center">
           <button 
-          type="button" 
-        
-          class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-1 py-1"
-          (click)="centrarEnPunto(punto)">
-          Ver en el mapa
-        </button>
-        <button 
-        type="button" 
-        style="margin-top: 5px;"
-        class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-1 py-1"
-        (click)="eliminarPunto(punto.id)">
-        Eliminar Punto
-      </button>
+            type="button" 
+            class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 font-medium rounded-lg text-sm px-1 py-1"
+            (click)="centrarEnPunto(punto)">
+            Ver en el mapa
+          </button>
+          <button 
+            type="button" 
+            class="text-white bg-gradient-to-br from-purple-600 to-blue-400 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 font-medium rounded-lg text-sm px-1 py-1 ms-2"
+            (click)="seleccionarPunto(punto)">
+            Actualizar
+          </button>
+          <button 
+            type="button" 
+            class="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 font-medium rounded-lg text-sm px-1 py-1 ms-2"
+            (click)="eliminarPunto(punto.id)">
+            Eliminar Punto
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<!-- Formulario alterno para editar un punto de recolección -->
+<div *ngIf="puntoSeleccionado" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-50" style="margin-top: 300px;">
+  <div class="bg-slate-50 p-5 rounded-lg shadow-md max-w-lg w-full">
+    <h3 class="text-xl font-semibold text-slate-700">Editar Punto de Recolección</h3>
+    <form (ngSubmit)="actualizarPunto()">
+      <div class="grid grid-cols-2 gap-4">
+        <div>
+          <label for="nombre" class="block text-sm font-medium text-slate-700">Nombre</label>
+          <input id="nombre" type="text" [(ngModel)]="puntoSeleccionado.nombre" name="nombre" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+        <div>
+          <label for="direccion" class="block text-sm font-medium text-slate-700">Dirección</label>
+          <input id="direccion" type="text" [(ngModel)]="puntoSeleccionado.direccion" name="direccion" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+        <div>
+          <label for="latitud" class="block text-sm font-medium text-slate-700">Latitud</label>
+          <input id="latitud" type="number" [(ngModel)]="puntoSeleccionado.latitud" name="latitud" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+        <div>
+          <label for="longitud" class="block text-sm font-medium text-slate-700">Longitud</label>
+          <input id="longitud" type="number" [(ngModel)]="puntoSeleccionado.longitud" name="longitud" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+        <div>
+          <label for="horarios" class="block text-sm font-medium text-slate-700">Horarios</label>
+          <input id="horarios" type="text" [(ngModel)]="puntoSeleccionado.horarios" name="horarios" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+        <div>
+          <label for="contacto" class="block text-sm font-medium text-slate-700">Contacto</label>
+          <input id="contacto" type="text" [(ngModel)]="puntoSeleccionado.contacto" name="contacto" class="mt-1 block w-full border rounded-md shadow-sm">
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end gap-4">
+        <button type="button" class="bg-gray-400 text-white px-4 py-2 rounded-lg" (click)="cancelarEdicion()">Cancelar</button>
+        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg">Guardar Cambios</button>
+      </div>
+    </form>
+  </div>
+</div>
+

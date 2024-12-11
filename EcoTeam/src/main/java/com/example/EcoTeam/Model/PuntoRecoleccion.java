@@ -15,15 +15,15 @@ public class PuntoRecoleccion {
     
     private String nombre;
     private String direccion;
-    private float latitud;
-    private float longitud;
+    private Float latitud;
+    private Float longitud;
     private String horarios;
     private String contacto;
 
     public PuntoRecoleccion() {
     }
 
-    public PuntoRecoleccion(int id, String nombre, String direccion, float latitud, float longitud, String horarios, String contacto) {
+    public PuntoRecoleccion(int id, String nombre, String direccion, Float latitud, Float longitud, String horarios, String contacto) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
@@ -32,6 +32,7 @@ public class PuntoRecoleccion {
         this.horarios = horarios;
         this.contacto = contacto;
     }
+
 
     public int getId() {
         return this.id;
@@ -57,19 +58,19 @@ public class PuntoRecoleccion {
         this.direccion = direccion;
     }
 
-    public float getLatitud() {
+    public Float getLatitud() {
         return this.latitud;
     }
 
-    public void setLatitud(float latitud) {
+    public void setLatitud(Float latitud) {
         this.latitud = latitud;
     }
 
-    public float getLongitud() {
+    public Float getLongitud() {
         return this.longitud;
     }
 
-    public void setLongitud(float longitud) {
+    public void setLongitud(Float longitud) {
         this.longitud = longitud;
     }
 
@@ -88,5 +89,6 @@ public class PuntoRecoleccion {
     public void setContacto(String contacto) {
         this.contacto = contacto;
     }
+
 
 }

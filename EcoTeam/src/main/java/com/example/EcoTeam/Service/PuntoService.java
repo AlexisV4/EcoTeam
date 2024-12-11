@@ -17,7 +17,15 @@ public class PuntoService {
 
     }
 
+    public PuntoRecoleccion buscarPuntoPorId(int id){
+        return puntosRepository.findById(id).orElse(null);
+    }
+
     public PuntoRecoleccion guardarPunto(PuntoRecoleccion puntoRecoleccion) {
+        return puntosRepository.save(puntoRecoleccion);
+    }
+
+    public PuntoRecoleccion actualizarPunto(PuntoRecoleccion puntoRecoleccion){
         return puntosRepository.save(puntoRecoleccion);
     }
 

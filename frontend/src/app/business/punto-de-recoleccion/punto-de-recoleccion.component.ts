@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PuntoDeRecoleccionService, PuntoRecoleccion } from '../../shared/services/punto-de-recoleccion.service';
 import * as L from 'leaflet';
 import { tileLayer } from 'leaflet';
@@ -7,12 +8,13 @@ import { tileLayer } from 'leaflet';
 @Component({
   selector: 'app-punto-de-recoleccion',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './punto-de-recoleccion.component.html',
   styleUrls: ['./punto-de-recoleccion.component.css']
 })
 export class PuntoDeRecoleccionComponent implements OnInit {
   puntosRecoleccion: PuntoRecoleccion[] = [];
+  puntoSeleccionado: PuntoRecoleccion | null = null;
   map: L.Map | undefined;
 
   constructor(private puntoDeRecoleccionService: PuntoDeRecoleccionService) {}
@@ -83,6 +85,35 @@ export class PuntoDeRecoleccionComponent implements OnInit {
         (error) => {
           console.error('Error al eliminar el punto:', error);
           alert('Hubo un error al eliminar el punto');
+        }
+      );
+    }
+  }
+
+  seleccionarPunto(punto: PuntoRecoleccion): void {
+    // Duplicamos el objeto para evitar cambios directos en la lista
+    this.puntoSeleccionado = { ...punto };
+  }
+
+  cancelarEdicion(): void {
+    this.puntoSeleccionado = null;
+  }
+
+  actualizarPunto(): void {
+    if (this.puntoSeleccionado) {
+      this.puntoDeRecoleccionService.actualizarPunto(this.puntoSeleccionado).subscribe(
+        (puntoActualizado) => {
+          // Actualizamos el punto en la lista local
+          const index = this.puntosRecoleccion.findIndex(p => p.id === puntoActualizado.id);
+          if (index > -1) {
+            this.puntosRecoleccion[index] = puntoActualizado;
+          }
+          alert('Punto de recolección actualizado correctamente');
+          this.puntoSeleccionado = null; // Cerramos el formulario
+        },
+        (error) => {
+          console.error('Error al actualizar el punto:', error);
+          alert('Hubo un error al actualizar el punto');
         }
       );
     }

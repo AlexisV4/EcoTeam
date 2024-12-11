@@ -7,3 +7,4 @@ import com.example.EcoTeam.Model.PuntoRecoleccion;
 public interface PuntosRepository extends JpaRepository <PuntoRecoleccion, Integer> {
 
 }
+

@@ -28,4 +28,9 @@ export class PuntoDeRecoleccionService {
     const url = `${this.apiUrl}/${id}`;
     return this.http.delete(url, { responseType: 'text' }); 
   }
+
+  actualizarPunto(punto: PuntoRecoleccion): Observable<PuntoRecoleccion> {
+    const url = `${this.apiUrl}/${punto.id}`;
+    return this.http.put<PuntoRecoleccion>(url, punto);
+  }
 }
